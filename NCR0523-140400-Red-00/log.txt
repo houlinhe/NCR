@@ -1,0 +1,189 @@
+I0523 12:54:51.660291 140496550129664 xla_bridge.py:884] Unable to initialize backend 'rocm': NOT_FOUND: Could not find registered platform with name: "rocm". Available platform names are: CUDA
+I0523 12:54:51.661510 140496550129664 xla_bridge.py:884] Unable to initialize backend 'tpu': INTERNAL: Failed to open libtpu.so: libtpu.so: cannot open shared object file: No such file or directory
+I0523 12:54:51.661886 140496550129664 app.py:92] JAX host: 0 / 1
+I0523 12:54:51.662027 140496550129664 app.py:93] JAX devices: [cuda(id=0)]
+I0523 12:54:51.662597 140496550129664 local.py:45] Setting task status: host_id: 0, host_count: 1
+I0523 12:54:51.662794 140496550129664 local.py:50] Created artifact Workdir of type ArtifactType.DIRECTORY and value mini_imagenet_red_ncr_20/.
+I0523 12:54:53.820942 140496550129664 app.py:104] RNG: [0 1]
+I0523 12:54:53.954921 140496550129664 train_utils.py:382] device_count: 1
+I0523 12:54:53.955244 140496550129664 train_utils.py:383] num_hosts : 1
+I0523 12:54:53.955385 140496550129664 train_utils.py:384] host_id : 0
+I0523 12:54:53.955506 140496550129664 train_utils.py:386] batch_size: 128
+checkpoint: true
+checkpoint_steps: 1000
+data_dtype_str: float32
+dataset_configs:
+  dataset: controlled_noisy_web_labels/mini_imagenet_red
+  num_classes: 100
+  pp_eval: decode|value_range(-1, 1)|resize_small(256)|central_crop(224)|onehot(100,
+    key="label", key_result="labels")|keep("image", "labels")
+  pp_train: decode_jpeg_and_inception_crop(224)|value_range(-1, 1)|flip_lr|onehot(100,
+    key="label", key_result="labels")|keep("image", "labels")
+  prefetch_to_device: 2
+  shuffle_buffer_size: 1000
+  train_split: train_00
+  val_split: validation
+dataset_name: bit
+debug_eval: false
+debug_train: false
+experiment_name: ncr
+explicit_weight_decay: null
+l2_decay_factor: null
+label_smoothing: null
+log_eval_steps: 5000
+log_summary_steps: 500
+loss_type: ncr
+lr_configs:
+  base_learning_rate: 0.1
+  steps_per_cycle: 50700
+  warmup_steps: 1950
+max_grad_norm: null
+mixup:
+  alpha: 0.0
+  bind_to: null
+model_dtype_str: float32
+model_name: resnet
+ncr:
+  loss_weight: 0.3
+  ncr_feature: pre_logits
+  number_neighbours: 10
+  smoothing_gamma: 1
+  starting_epoch: 10
+  temperature: 2.0
+num_filters: 64
+num_layers: 18
+num_training_epochs: 130
+optimizer: momentum
+optimizer_configs:
+  momentum: 0.9
+  weight_decay: 0.0005
+rng_seed: 1
+trainer_name: classification_trainer
+write_summary: true
+write_xm_measurements: true
+xprof: true
+
+I0523 12:54:54.084956 140496550129664 datasets.py:108] On-demand import of dataset (bit) from module (scenic.dataset_lib.big_transfer.bit).
+I0523 12:54:54.085211 140496550129664 train_utils.py:408] local_batch_size : 128
+I0523 12:54:54.085335 140496550129664 train_utils.py:409] device_batch_size : 128
+I0523 12:54:54.085525 140496550129664 bit.py:80] Loading train split of the controlled_noisy_web_labels/mini_imagenet_redfrom bit dataset.
+I0523 12:54:54.288753 140496550129664 dataset_info.py:539] Load dataset info from /mnt/c/Users/Tianqi/tensorflow_datasets/controlled_noisy_web_labels/mini_imagenet_red/1.0.0
+I0523 12:54:54.296422 140496550129664 dataset_info.py:606] Field info.module_name from disk and from code do not match. Keeping the one from code.
+W0523 12:54:54.315749 140496550129664 deprecation.py:50] From /usr/local/lib/python3.10/dist-packages/tensorflow_datasets/core/reader.py:98: CounterV2 (from tensorflow.python.data.experimental.ops.counter) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.data.Dataset.counter(...)` instead.
+I0523 12:54:54.339208 140496550129664 logging_logger.py:49] Constructing tf.data.Dataset controlled_noisy_web_labels for split _EvenSplit(split='train_00', index=0, count=1, drop_remainder=True), from /mnt/c/Users/Tianqi/tensorflow_datasets/controlled_noisy_web_labels/mini_imagenet_red/1.0.0
+I0523 12:54:55.167631 140496550129664 api.py:460] Data before pre-processing:
+{'id': <tf.Tensor 'args_0:0' shape=() dtype=string>, 'image': <tf.Tensor 'args_1:0' shape=() dtype=string>, 'is_clean': <tf.Tensor 'args_2:0' shape=() dtype=bool>, 'label': <tf.Tensor 'args_3:0' shape=() dtype=int64>, 'tfds_id': <tf.Tensor 'args_4:0' shape=() dtype=string>}
+W0523 12:54:55.168883 140496550129664 deprecation.py:50] From /usr/local/lib/python3.10/dist-packages/tensorflow/python/util/dispatch.py:1260: sample_distorted_bounding_box (from tensorflow.python.ops.image_ops_impl) is deprecated and will be removed in a future version.
+Instructions for updating:
+`seed2` arg is deprecated.Use sample_distorted_bounding_box_v2 instead.
+I0523 12:54:55.355369 140496550129664 api.py:460] Data after pre-processing:
+{'image': <tf.Tensor 'random_flip_left_right/Identity:0' shape=(224, 224, 3) dtype=float32>, 'labels': <tf.Tensor 'one_hot:0' shape=(100,) dtype=float32>}
+W0523 12:54:55.359443 140496550129664 deprecation.py:50] From /mnt/c/Users/Tianqi/Desktop/Mike/NCR/scenic/dataset_lib/dataset_utils.py:655: ignore_errors (from tensorflow.python.data.experimental.ops.error_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.data.Dataset.ignore_errors` instead.
+I0523 12:54:55.369397 140496550129664 dataset_builder.py:498] Reusing dataset controlled_noisy_web_labels (/mnt/c/Users/Tianqi/tensorflow_datasets/controlled_noisy_web_labels/mini_imagenet_red/1.0.0)
+I0523 12:54:55.413338 140496550129664 bit.py:147] Loading validation split of the controlled_noisy_web_labels/mini_imagenet_redfrom bit dataset.
+I0523 12:54:55.441292 140496550129664 logging_logger.py:49] Constructing tf.data.Dataset controlled_noisy_web_labels for split _EvenSplit(split='validation', index=0, count=1, drop_remainder=True), from /mnt/c/Users/Tianqi/tensorflow_datasets/controlled_noisy_web_labels/mini_imagenet_red/1.0.0
+I0523 12:54:55.481966 140496550129664 api.py:460] Data before pre-processing:
+{'id': <tf.Tensor 'args_0:0' shape=() dtype=string>, 'image': <tf.Tensor 'args_1:0' shape=() dtype=string>, 'is_clean': <tf.Tensor 'args_2:0' shape=() dtype=bool>, 'label': <tf.Tensor 'args_3:0' shape=() dtype=int64>, 'tfds_id': <tf.Tensor 'args_4:0' shape=() dtype=string>}
+I0523 12:54:55.596641 140496550129664 api.py:460] Data after pre-processing:
+{'image': <tf.Tensor 'crop_to_bounding_box/Squeeze:0' shape=(224, 224, 3) dtype=float32>, 'labels': <tf.Tensor 'one_hot:0' shape=(100,) dtype=float32>}
+I0523 12:54:55.668993 140496550129664 dataset_builder.py:498] Reusing dataset controlled_noisy_web_labels (/mnt/c/Users/Tianqi/tensorflow_datasets/controlled_noisy_web_labels/mini_imagenet_red/1.0.0)
+I0523 12:54:58.424538 140496550129664 parameter_overview.py:353] 
++----------------------------------+------------------+---------+-----------+-----------+--------+
+| Name                             | Shape            | Dtype   | Size      | Mean      | Std    |
++----------------------------------+------------------+---------+-----------+-----------+--------+
+| ResidualBlock_0/bn2/bias         | (64,)            | float32 | 64        | 0.0       | 0.0    |
+| ResidualBlock_0/bn2/scale        | (64,)            | float32 | 64        | 1.0       | 0.0    |
+| ResidualBlock_0/bn3/bias         | (64,)            | float32 | 64        | 0.0       | 0.0    |
+| ResidualBlock_0/bn3/scale        | (64,)            | float32 | 64        | 0.0       | 0.0    |
+| ResidualBlock_0/conv2/kernel     | (3, 3, 64, 64)   | float32 | 36,864    | -0.00013  | 0.0417 |
+| ResidualBlock_0/conv3/kernel     | (3, 3, 64, 64)   | float32 | 36,864    | 4.91e-05  | 0.0418 |
+| ResidualBlock_0/proj_bn/bias     | (64,)            | float32 | 64        | 0.0       | 0.0    |
+| ResidualBlock_0/proj_bn/scale    | (64,)            | float32 | 64        | 1.0       | 0.0    |
+| ResidualBlock_0/proj_conv/kernel | (1, 1, 64, 64)   | float32 | 4,096     | 0.00427   | 0.125  |
+| ResidualBlock_1/bn2/bias         | (64,)            | float32 | 64        | 0.0       | 0.0    |
+| ResidualBlock_1/bn2/scale        | (64,)            | float32 | 64        | 1.0       | 0.0    |
+| ResidualBlock_1/bn3/bias         | (64,)            | float32 | 64        | 0.0       | 0.0    |
+| ResidualBlock_1/bn3/scale        | (64,)            | float32 | 64        | 0.0       | 0.0    |
+| ResidualBlock_1/conv2/kernel     | (3, 3, 64, 64)   | float32 | 36,864    | -0.000112 | 0.0417 |
+| ResidualBlock_1/conv3/kernel     | (3, 3, 64, 64)   | float32 | 36,864    | -3.42e-05 | 0.0416 |
+| ResidualBlock_1/proj_bn/bias     | (64,)            | float32 | 64        | 0.0       | 0.0    |
+| ResidualBlock_1/proj_bn/scale    | (64,)            | float32 | 64        | 1.0       | 0.0    |
+| ResidualBlock_1/proj_conv/kernel | (1, 1, 64, 64)   | float32 | 4,096     | 0.0024    | 0.125  |
+| ResidualBlock_2/bn2/bias         | (128,)           | float32 | 128       | 0.0       | 0.0    |
+| ResidualBlock_2/bn2/scale        | (128,)           | float32 | 128       | 1.0       | 0.0    |
+| ResidualBlock_2/bn3/bias         | (128,)           | float32 | 128       | 0.0       | 0.0    |
+| ResidualBlock_2/bn3/scale        | (128,)           | float32 | 128       | 0.0       | 0.0    |
+| ResidualBlock_2/conv2/kernel     | (3, 3, 64, 128)  | float32 | 73,728    | 0.000346  | 0.0416 |
+| ResidualBlock_2/conv3/kernel     | (3, 3, 128, 128) | float32 | 147,456   | 7.54e-05  | 0.0295 |
+| ResidualBlock_2/proj_bn/bias     | (128,)           | float32 | 128       | 0.0       | 0.0    |
+| ResidualBlock_2/proj_bn/scale    | (128,)           | float32 | 128       | 1.0       | 0.0    |
+| ResidualBlock_2/proj_conv/kernel | (1, 1, 64, 128)  | float32 | 8,192     | 2.41e-05  | 0.125  |
+| ResidualBlock_3/bn2/bias         | (128,)           | float32 | 128       | 0.0       | 0.0    |
+| ResidualBlock_3/bn2/scale        | (128,)           | float32 | 128       | 1.0       | 0.0    |
+| ResidualBlock_3/bn3/bias         | (128,)           | float32 | 128       | 0.0       | 0.0    |
+| ResidualBlock_3/bn3/scale        | (128,)           | float32 | 128       | 0.0       | 0.0    |
+| ResidualBlock_3/conv2/kernel     | (3, 3, 128, 128) | float32 | 147,456   | 6.37e-05  | 0.0295 |
+| ResidualBlock_3/conv3/kernel     | (3, 3, 128, 128) | float32 | 147,456   | -7.34e-05 | 0.0295 |
+| ResidualBlock_3/proj_bn/bias     | (128,)           | float32 | 128       | 0.0       | 0.0    |
+| ResidualBlock_3/proj_bn/scale    | (128,)           | float32 | 128       | 1.0       | 0.0    |
+| ResidualBlock_3/proj_conv/kernel | (1, 1, 128, 128) | float32 | 16,384    | 0.000325  | 0.0884 |
+| ResidualBlock_4/bn2/bias         | (256,)           | float32 | 256       | 0.0       | 0.0    |
+| ResidualBlock_4/bn2/scale        | (256,)           | float32 | 256       | 1.0       | 0.0    |
+| ResidualBlock_4/bn3/bias         | (256,)           | float32 | 256       | 0.0       | 0.0    |
+| ResidualBlock_4/bn3/scale        | (256,)           | float32 | 256       | 0.0       | 0.0    |
+| ResidualBlock_4/conv2/kernel     | (3, 3, 128, 256) | float32 | 294,912   | 0.000142  | 0.0295 |
+| ResidualBlock_4/conv3/kernel     | (3, 3, 256, 256) | float32 | 589,824   | 4.62e-06  | 0.0209 |
+| ResidualBlock_4/proj_bn/bias     | (256,)           | float32 | 256       | 0.0       | 0.0    |
+| ResidualBlock_4/proj_bn/scale    | (256,)           | float32 | 256       | 1.0       | 0.0    |
+| ResidualBlock_4/proj_conv/kernel | (1, 1, 128, 256) | float32 | 32,768    | -0.000408 | 0.0885 |
+| ResidualBlock_5/bn2/bias         | (256,)           | float32 | 256       | 0.0       | 0.0    |
+| ResidualBlock_5/bn2/scale        | (256,)           | float32 | 256       | 1.0       | 0.0    |
+| ResidualBlock_5/bn3/bias         | (256,)           | float32 | 256       | 0.0       | 0.0    |
+| ResidualBlock_5/bn3/scale        | (256,)           | float32 | 256       | 0.0       | 0.0    |
+| ResidualBlock_5/conv2/kernel     | (3, 3, 256, 256) | float32 | 589,824   | 3.01e-05  | 0.0208 |
+| ResidualBlock_5/conv3/kernel     | (3, 3, 256, 256) | float32 | 589,824   | 1.36e-05  | 0.0208 |
+| ResidualBlock_5/proj_bn/bias     | (256,)           | float32 | 256       | 0.0       | 0.0    |
+| ResidualBlock_5/proj_bn/scale    | (256,)           | float32 | 256       | 1.0       | 0.0    |
+| ResidualBlock_5/proj_conv/kernel | (1, 1, 256, 256) | float32 | 65,536    | -0.000408 | 0.0627 |
+| ResidualBlock_6/bn2/bias         | (512,)           | float32 | 512       | 0.0       | 0.0    |
+| ResidualBlock_6/bn2/scale        | (512,)           | float32 | 512       | 1.0       | 0.0    |
+| ResidualBlock_6/bn3/bias         | (512,)           | float32 | 512       | 0.0       | 0.0    |
+| ResidualBlock_6/bn3/scale        | (512,)           | float32 | 512       | 0.0       | 0.0    |
+| ResidualBlock_6/conv2/kernel     | (3, 3, 256, 512) | float32 | 1,179,648 | -1.05e-05 | 0.0208 |
+| ResidualBlock_6/conv3/kernel     | (3, 3, 512, 512) | float32 | 2,359,296 | -1.12e-05 | 0.0147 |
+| ResidualBlock_6/proj_bn/bias     | (512,)           | float32 | 512       | 0.0       | 0.0    |
+| ResidualBlock_6/proj_bn/scale    | (512,)           | float32 | 512       | 1.0       | 0.0    |
+| ResidualBlock_6/proj_conv/kernel | (1, 1, 256, 512) | float32 | 131,072   | -0.000189 | 0.0623 |
+| ResidualBlock_7/bn2/bias         | (512,)           | float32 | 512       | 0.0       | 0.0    |
+| ResidualBlock_7/bn2/scale        | (512,)           | float32 | 512       | 1.0       | 0.0    |
+| ResidualBlock_7/bn3/bias         | (512,)           | float32 | 512       | 0.0       | 0.0    |
+| ResidualBlock_7/bn3/scale        | (512,)           | float32 | 512       | 0.0       | 0.0    |
+| ResidualBlock_7/conv2/kernel     | (3, 3, 512, 512) | float32 | 2,359,296 | -3.35e-06 | 0.0147 |
+| ResidualBlock_7/conv3/kernel     | (3, 3, 512, 512) | float32 | 2,359,296 | 7.57e-06  | 0.0147 |
+| ResidualBlock_7/proj_bn/bias     | (512,)           | float32 | 512       | 0.0       | 0.0    |
+| ResidualBlock_7/proj_bn/scale    | (512,)           | float32 | 512       | 1.0       | 0.0    |
+| ResidualBlock_7/proj_conv/kernel | (1, 1, 512, 512) | float32 | 262,144   | -1.49e-05 | 0.0443 |
+| init_bn/bias                     | (64,)            | float32 | 64        | 0.0       | 0.0    |
+| init_bn/scale                    | (64,)            | float32 | 64        | 1.0       | 0.0    |
+| output_projection/bias           | (100,)           | float32 | 100       | 0.0       | 0.0    |
+| output_projection/kernel         | (512, 100)       | float32 | 51,200    | 0.000179  | 0.0441 |
+| stem_conv/kernel                 | (7, 7, 3, 64)    | float32 | 9,408     | 0.000824  | 0.0816 |
+I0523 12:54:58.424928 140496550129664 parameter_overview.py:353] 
++----------------------------------+------------------+---------+-----------+-----------+--------+
+Total: 11,582,116 -- 46,328,464 bytes
+I0523 12:54:58.425233 140496550129664 debug_utils.py:85] Total params: 11582116
+I0523 12:54:58.689776 140496550129664 debug_utils.py:142] GFLOPs 1.750 for input spec: [((-1, 224, 224, 3), <class 'jax.numpy.float32'>)]
+I0523 12:54:58.782631 140496550129664 checkpoints.py:1101] Found no checkpoint files in mini_imagenet_red_ncr_20 with prefix checkpoint_
+I0523 12:54:58.817551 140496550129664 classification_trainer.py:380] Starting training loop at step 1.
+I0523 12:54:58.818010 140475260253760 logging_writer.py:48] [1] gflops=1.74956, num_trainable_params=11582116
+I0523 12:54:58.818289 140496550129664 local.py:41] Setting work unit notes: First step compilations...
+Steps:0/50700 [0.0%]
+I0523 12:55:08.440072 140496550129664 local.py:41] Setting work unit notes: Steps:0/50700 [0.0%]
+I0523 12:55:08.699119 140475260253760 logging_writer.py:48] [1] train/accuracy=0, train/loss_xentropy=4.70755, train/ncr_loss=0, train/softmax_cross_entropy=4.70755, train/total_loss=4.70755
+I0523 12:55:08.702898 140475260253760 logging_writer.py:48] [1] learning_rate=5.128234624862671e-05
+I0523 12:55:10.296154 140472676652608 logging_writer.py:48] [1] valid/accuracy=0.0108, valid/loss_xentropy=4.60497
+I0523 12:55:16.754106 140496550129664 local.py:50] Created artifact [10] Profile of type ArtifactType.URL and value None.
