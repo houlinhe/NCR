@@ -1,0 +1,169 @@
+Python3.9.7
+
+pip install -r scenic/projects/ncr/requirements.txt
+pip install chex==0.1.86 clu tensorflow==2.15.1 optax==0.2.2 immutabledict tensorflow-addons flax==0.8.3
+
+pip install clu
+pip install tensorflow
+pip install optax==0.2.2
+pip install immutabledict
+pip install tensorflow-addons
+
+pip install chex==0.1.82
+
+pip3 install flax==0.4.0
+
+Package                      Version
+---------------------------- ---------------------
+absl-py                      2.1.0
+astunparse                   1.6.3
+beautifulsoup4               4.12.3
+cachetools                   5.3.3
+certifi                      2024.2.2
+charset-normalizer           3.3.2
+chex                         0.1.86
+click                        8.1.7
+clu                          0.0.12
+colorama                     0.4.6
+contextlib2                  21.6.0
+contourpy                    1.2.1
+cycler                       0.12.1
+dill                         0.3.8
+dm-tree                      0.1.8
+docstring_parser             0.16
+etils                        1.7.0
+filelock                     3.14.0
+flatbuffers                  24.3.25
+flax                         0.8.3
+fonttools                    4.51.0
+fsspec                       2024.5.0
+gast                         0.4.0
+gdown                        5.2.0
+google-auth                  2.29.0
+google-auth-oauthlib         1.0.0
+google-pasta                 0.2.0
+grpcio                       1.63.0
+h5py                         3.11.0
+idna                         3.7
+imageio                      2.34.1
+immutabledict                4.2.0
+importlib_resources          6.4.0
+jax                          0.4.28
+jaxlib                       0.4.28
+keras                        2.15.0
+keras-nightly                3.3.3.dev2024052103
+kiwisolver                   1.4.5
+lazy_loader                  0.4
+libclang                     18.1.1
+Markdown                     3.6
+markdown-it-py               3.0.0
+MarkupSafe                   2.1.5
+matplotlib                   3.9.0
+mdurl                        0.1.2
+ml-collections               0.1.1
+ml-dtypes                    0.3.2
+msgpack                      1.0.8
+namex                        0.0.8
+nest-asyncio                 1.6.0
+networkx                     3.3
+numpy                        1.24.3
+oauthlib                     3.2.2
+opencv-python                4.9.0.80
+opt-einsum                   3.3.0
+optax                        0.2.2
+optree                       0.11.0
+orbax-checkpoint             0.5.11
+packaging                    24.0
+pillow                       10.3.0
+pip                          24.0
+promise                      2.3
+protobuf                     3.20.3
+psutil                       5.9.8
+pyarrow                      16.1.0
+pyasn1                       0.6.0
+pyasn1_modules               0.4.0
+Pygments                     2.18.0
+pyparsing                    3.1.2
+PySocks                      1.7.1
+python-dateutil              2.9.0.post0
+PyYAML                       6.0.1
+requests                     2.31.0
+requests-oauthlib            2.0.0
+rich                         13.7.1
+rsa                          4.9
+scikit-image                 0.23.2
+scipy                        1.13.0
+setuptools                   58.1.0
+simple_parsing               0.1.5
+six                          1.16.0
+soupsieve                    2.5
+tb-nightly                   2.17.0a20240520
+tensorboard                  2.15.2
+tensorboard-data-server      0.7.2
+tensorflow                   2.15.1
+tensorflow-addons            0.22.0
+tensorflow-datasets          4.6.0
+tensorflow-estimator         2.15.0
+tensorflow-intel             2.15.1
+tensorflow-io                0.31.0
+tensorflow-io-gcs-filesystem 0.31.0
+tensorflow-metadata          1.15.0
+tensorstore                  0.1.59
+termcolor                    2.4.0
+tf_nightly_intel             2.17.0.dev20240520
+tfds-nightly                 4.9.4.dev202405210044
+tifffile                     2024.5.10
+toml                         0.10.2
+toolz                        0.12.1
+tqdm                         4.66.4
+typeguard                    2.13.3
+typing_extensions            4.5.0
+urllib3                      2.2.1
+Werkzeug                     3.0.3
+wheel                        0.43.0
+wrapt                        1.14.1
+zipp                         3.18.2
+
+https://drive.google.com/drive/folders/17a09kkqVivZQFggCw9I_YboJ23tcexNM
+https://drive.google.com/drive/folders/137M9jEv8nw0agovbUiEN_fPl_waJ2jIj
+
+-> https://www.tensorflow.org/datasets/catalog/controlled_noisy_web_labels
+
+Name: numpy
+Version: 1.26.4
+
+controlled_noisy_web_labels
+
+pip3 install tensorflow_datasets==4.8.0
+
+https://storage.googleapis.com/cnlw/README.txt
+
+pip install tf-nightly-gpu tfds-nightly
+
+ImportError: cannot import name '_initialize_variables' from 'keras.src.backend' -> pip install tensorflow==2.14.0
+ImportError: cannot import name 'cast' from partially initialized module 'keras.src.backend' -> pip install keras==2.14.0
+ModuleNotFoundError: No module named 'keras.src.engine' -> pip install 'keras<3.0.0' mediapipe-model-maker / pip install "keras<3.0.0" "tensorflow<2.16" "tf-models-official<2.16"
+
+ImportError: cannot import name 'linear_util' from 'jax' -> pip install jax==0.4.13 jaxlib==0.4.13 flax==0.7.0
+ImportError: cannot import name 'isin' from 'jax._src.numpy.lax_numpy' -> pip install jax==0.4.12 jaxlib==0.4.12 chex==0.1.7 optax==0.1.4
+AttributeError: module 'scipy.linalg' has no attribute 'tril' -> pip install scipy==1.12.0
+
+original: Pillow==9.1.1
+
+pip install flax==0.7.3 -> No SharedDevice
+
+pip install optax git+https://github.com/google-deepmind/optax.git@main
+
+jax on wsl: https://medium.com/@bansal1232.bhavy/install-jax-on-wsl-both-cpu-gpu-cf6daf30c7f7
+
+pip install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+https://developer.nvidia.com/rdp/cudnn-archive
+https://developer.nvidia.com/cudnn-9-0-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local
+
+alt: pip install "jax[cuda12_cudnn89]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+pip install "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+python3 -m scenic.projects.ncr.main   --config=scenic/projects/ncr/configs/mini_imagenet_blue_ncr_train20.py   --workdir=mini_imagenet_red_ncr_20/
+
+tfds build --data_dir="/mnt/c/Users/Tianqi/tensorflow_datasets/"
